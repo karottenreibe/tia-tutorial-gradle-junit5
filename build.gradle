@@ -1,5 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://share.cqse.eu/public/maven/' }
+    }
+    dependencies {
+        classpath 'com.teamscale:teamscale-gradle-plugin:0.5.5'
+    }
+}
+
 plugins {
     id 'java'
+}
+
+apply plugin: 'teamscale'
+
+teamscale {
+
+    server {
+        url = 'http://localhost:8080/'
+        userName = 'admin'
+        userAccessToken = 'q4tu9vfAAjQZ1peCpPvQHSrLi5CeIcGY'
+        project = 'tia-junit5'
+    }
+
+    report {
+        partition = 'Unit Tests'
+        testwiseCoverage()
+    }
+
 }
 
 group 'eu.cqse.tutorials'
